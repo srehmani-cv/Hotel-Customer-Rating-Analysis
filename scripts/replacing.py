@@ -30,7 +30,7 @@ def replace_placeholder_in_docx(doc_path, placeholder, replacement_text, output_
     doc.save(output_path)
     print(f"Document saved as: {output_path}")
 
-
+#create the weekly report
 def ToWord(zahl, h_id, doc_path, week):
     id=h_id
     replacing = pd.read_excel('../'+str(id)+'/Week_'+str(week)+'/placeholder_week_'+str(week)+'_id_'+str(id)+'.xlsx')
@@ -55,35 +55,8 @@ def ToWord(zahl, h_id, doc_path, week):
         img_path =''
 
     replace_placeholder_in_docx(doc_path, placeholder, replacement_text, output_path,img_path)
-
-#################################
-#################################
-#################################
-
-
-id = 1758394 # this is hotel_id
-
-#################################
-#################################
-
-week = 46
-month = 11
-
-#################################
-#################################
-
-df = pd.read_excel('../'+str(id)+'/Week_'+str(week)+'/placeholder_week_'+str(week)+'_id_'+str(id)+'.xlsx')
-doc_path = '../'+str(id)+'/Week_'+str(week)+'/report_week_'+str(week)+'_id_'+str(id)+'.docx'
-output_path = '../'+str(id)+'/Week_'+str(week)+'/report_week_'+str(week)+'_id_'+str(id)+'.pdf'
-
-for i in range(len(df['Placeholder'])):
-    ToWord(i,id, doc_path, week)
-
-convert_docx_to_pdf(doc_path, output_path)
-
-#################################
-#################################
-#################################
+    
+# create the monthly report
 def ToWordMonth(zahl, h_id, doc_path, month):
     id=h_id
     replacing = pd.read_excel('../'+str(id)+'/Month_'+str(month)+'/placeholder_month_'+str(month)+'_id_'+str(id)+'.xlsx')
@@ -109,11 +82,35 @@ def ToWordMonth(zahl, h_id, doc_path, month):
 
     replace_placeholder_in_docx(doc_path, placeholder, replacement_text, output_path,img_path)
 
+#################################
+#################################
+#################################
+# Example Data
+id = 1758394 # this is hotel_id
+week = 46
+month = 11
 
+#for weekly report
+#load the data for generating the reports from the respective excel files
+df = pd.read_excel('../'+str(id)+'/Week_'+str(week)+'/placeholder_week_'+str(week)+'_id_'+str(id)+'.xlsx')
+doc_path = '../'+str(id)+'/Week_'+str(week)+'/report_week_'+str(week)+'_id_'+str(id)+'.docx'
+output_path = '../'+str(id)+'/Week_'+str(week)+'/report_week_'+str(week)+'_id_'+str(id)+'.pdf'
+
+#execute the generation of the report
+for i in range(len(df['Placeholder'])):
+    ToWord(i,id, doc_path, week)
+
+convert_docx_to_pdf(doc_path, output_path)
+
+##########
+
+# For the monthly report
+#load the data for generating the reports from the respective excel files
 df = pd.read_excel('../'+str(id)+'/Month_'+str(month)+'/placeholder_month_'+str(month)+'_id_'+str(id)+'.xlsx')
 doc_path = '../'+str(id)+'/Month_'+str(month)+'/report_month_'+str(month)+'_id_'+str(id)+'.docx'
 output_path = '../'+str(id)+'/Month_'+str(month)+'/report_month_'+str(month)+'_id_'+str(id)+'.pdf'
 
+#execute the generation of the report
 for i in range(len(df['Placeholder'])):
     ToWordMonth(i,id, doc_path, month)
 
