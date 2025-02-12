@@ -4,8 +4,9 @@
 ### 1758394
 The folder "1758394" is an example for generated report by the python scripts.
 This folder contains:
-1. 4 Excel files with the customer ratings
-2. Week and Month Folder
+1. 4 Excel files with the customer ratings data
+2. Power BI Data Visualisations
+3. The Week and Month Folder
 the week and month folder contain:
 1. report.docx and report.pdf
 2. graphs
